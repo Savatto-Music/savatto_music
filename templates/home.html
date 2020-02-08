@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block head_content %}
+{% endblock %}
+
+{% block container %}
+
+<section class="main">
+    <input type="text" class="search--input" placeholder="Buscar">
+</section>
+
+<p class="categories__title">Novedades</h2>
+
+    <section class="carousel">
+        <div class="carousel__container">
+                {% for band in user %}
+                    {% include "band_card.html" %}
+                {% endfor %}
+            <a href="{% url 'users:garage' %}">
+                <div class="carousel-item">
+                    <img class="carousel-item__img" src="../static/src/bands/ver_mas.png" alt="" />
+                </div>
+            </a>
+        </div>
+    </section>
+
+    {% endblock %}
