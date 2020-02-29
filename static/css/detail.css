@@ -1,0 +1,199 @@
+.profile--container {
+    width: 90vw;
+    height: 800px;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin: 70px auto;
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgb(192, 192, 192);
+    display: flex;
+    flex-direction: column;
+}
+
+.profile--header {
+    margin: 0 auto;
+    width: 100%;
+}
+
+.profile--header__info {
+    margin: 10px auto;
+    width: 70%;
+}
+
+.profile--header__biography {
+    text-align: justify;
+    font-size: .8rem;
+}
+
+.profile_band-item {
+    border-radius: 20px;
+    width: 100%;
+    height: 250px;
+    font-size: 20px;
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    margin-bottom: 10px;
+}
+
+.profile_band-item__img {
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    width: 100%;
+    height: 250px;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.profile--content {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.profile--content__titles {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 50px;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.profile--content__titles p {
+    margin: 0;
+    padding: 0;
+}
+
+.songlist {
+    padding-inline-start: 0;
+}
+
+.song {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 5%;
+    margin: 0;
+    color: white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.song--title__container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.play--icon {
+    text-align: center;
+    margin: 0 10px 0 0;
+    transform: scale(0.9);
+}
+
+.profile--schedule {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.profile--schedule--items{
+    display: flex;
+    align-items: center;
+    width: 400px;
+}
+.profile--schedule--items p{
+    margin-right: 5px;
+}
+
+.profile--schedule__btn {
+    justify-content: center;
+    align-items: center;
+    color: white;
+    display: flex;
+    background-color: var(--purple-color);
+    border-radius: 10px;
+    border: none;
+    padding: 5px 15px;
+    margin-left: 20px;
+    transition: 0.3s;
+}
+
+.profile--schedule__btn:hover {
+    transform: scale(1.05);
+}
+
+.profile--schedule__text {
+    font-size: 1.1rem;
+}
+
+.profile--price {
+    font-size: 1.3rem;
+}
+
+.mp3_buttons {
+    display: flex;
+    align-items: center;
+}
+
+.mp3_button {
+    color: white;
+    background-color: #00000000;
+    border: none;
+    justify-content: center;
+}
+
+.videoWrapper {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+}
+.videoWrapper iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+@media screen and (min-width: 800px) {
+    .profile--header__biography {
+        font-size: 1rem;
+    }
+    .profile--price {
+        font-size: 1.5rem;
+    }
+    .profile--schedule__text {
+        font-size: 1.3rem;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .profile--container {
+        height: 600px;
+    }
+    .profile--header {
+        display: flex;
+        margin: 20px auto;
+        width: 90%;
+    }
+
+    .profile_band-item {
+        width: 200px;
+        height: 250px;
+    }
+
+    .profile_band-item__img {
+        border-radius: 15px;
+        width: 200px;
+        height: 250px;
+        -o-object-fit: cover;
+        object-fit: cover;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .profile--container {
+        width: 1100px;
+        height: 600px;
+    }
+}

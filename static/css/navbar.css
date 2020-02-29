@@ -1,0 +1,122 @@
+.my--navbar {
+    height: 5vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 5;
+    position: relative;
+    width: 100vw;
+}
+
+.logo {
+    display: block;
+    padding-top: 65px;
+    padding-left: 25px;
+}
+
+.logo img {
+    height: 40px;
+    cursor: pointer;
+}
+
+.my--navbar--options {
+    padding-top: 65px;
+    padding-right: 25px;
+    display: flex;
+    align-items: center;
+}
+
+.search--input {
+    margin-top: 55px;
+    background-color: rgba(255, 255, 255, 0.219);
+    border: 2px solid rgba(255, 255, 255, 0);
+    border-radius: 50px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    height: 25px;
+    outline: none;
+    padding: 0px 20px;
+    width: 50%;
+}
+
+.profile a {
+    text-decoration: none;
+}
+
+.profile ul {
+    background-color: #2e2e2ed7;
+    display: none;
+    list-style: none;
+    margin: -15px 0px 0px -75px;
+    padding: 70px 10px 10px 0;
+    border-radius: 15px;
+    position: absolute;
+    width: 125px;
+    text-align: right;
+    z-index: -1;
+}
+
+.profile:hover ul {
+    display: block;
+    animation-name: slidein;
+    animation-duration: .5s;
+}
+
+@keyframes slidein {
+    from {
+        opacity: 0%;
+        height: 0%;
+    }
+    to {
+        opacity: 100%;
+        height: 100%;
+    }
+}
+
+.profile li {
+    margin: 3px 0px;
+}
+
+.profile li a {
+    color: white;
+    text-decoration: none;
+}
+
+.profile li a:hover {
+    text-decoration: underline;
+}
+
+.profile_sign {
+    border: 1px solid white;
+    padding: 2px 10px;
+    border-radius: 15px;
+    transition: .5s;
+}
+
+.profile_sign:hover {
+    background-color: white;
+    color: black;
+}
+
+.profile_img {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+::placeholder {
+    color: white;
+    opacity: 0.5;
+}
+
+@media screen and (min-width: 800px) {
+    .logo img {
+        height: 50px;
+    }
+    .profile_icon {
+        height: 40px;
+    }
+}

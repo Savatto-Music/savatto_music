@@ -21,14 +21,14 @@ from users.forms import SignupForm
 class UserGarageView(ListView):
     template_name = 'garage.html'
     model = User
-    paginate_by = 10
+    paginate_by = 8
     context_object_name = 'user'
 
 
 class UserHomeView(ListView):
     template_name = 'home.html'
     model = User
-    paginate_by = 6
+    paginate_by = 5
     context_object_name = 'user'
 
 
@@ -52,7 +52,19 @@ class UserDetailView(DetailView):
 class SignupView(FormView):
     """Users signup."""
 
-    template_name = 'users/signup.html'
+    template_name = 'sign.html'
+    form_class = SignupForm
+    success_url = reverse_lazy('users:login')
+
+    def form_valid(self, form):
+        """Sava form data."""
+        form.save()
+        return super().form_valid(form)
+
+class Band_signupView(FormView):
+    """Users signup."""
+
+    template_name = 'band_register.html'
     form_class = SignupForm
     success_url = reverse_lazy('users:login')
 
@@ -62,12 +74,25 @@ class SignupView(FormView):
         return super().form_valid(form)
 
 
+
 class UpdateProfileView(LoginRequiredMixin, UpdateView):
     """Update profile view."""
 
-    template_name = 'users/update_profile.html'
+    template_name = 'profile.html'
     model = Profile
-    fields = ['website', 'phone_number', 'biography', 'picture']
+    fields = [
+        'name',
+        'genre',
+        'biography',
+        'phone_number',
+        'email',
+        'namesong1',
+        'namesong2',
+        'namesong3',
+        'urlsong1',
+        'urlsong2',
+        'urlsong3',
+        'price']
 
     def get_object(self):
         """Return user's profile."""
@@ -82,9 +107,9 @@ class UpdateProfileView(LoginRequiredMixin, UpdateView):
 class LoginView(auth_views.LoginView):
     """ Login View """
 
-    template_name = 'users/login.html'
+    template_name = 'sign.html'
 
 
 class LogoutView(LoginRequiredMixin, auth_views.LogoutView):
     """Logout View."""
-    template_name = 'users/logged_out.html'
+    template_name = 'logged_out.html'

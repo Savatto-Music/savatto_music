@@ -1,9 +1,9 @@
 <a href="{% url "users:detail" band.username %}">
-    <div class="carousel-item">
-        <img class="carousel-item__img" src="{{ band.profile.picture.url }}" alt="" />
-        <div class="carousel-item__details">
-            <p class="carousel-item__details--title">{{ band.profile.name }}</p>
-            <p class="carousel-item__details--subtitle">{{ band.profile.genre }}</p>
+    <div class="carousel_band-item">
+        <img class="carousel_band-item__img" src="{{ band.profile.picture.url }}" alt="" />
+        <div class="carousel_band-item__details">
+            <p class="carousel_band-item__details--title">{{ band.profile.name }}</p>
+            <p class="carousel_band-item__details--subtitle">{{ band.profile.genre }}</p>
         </div>
     </div>
 </a>

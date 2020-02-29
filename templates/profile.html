@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block head_content %}
+<title>Savatto Music | {{ user.username }}</title>
+{% endblock %}
+
+{% block container %}
+
+<div class="profile--container">
+
+    <form action="{% url 'users:update_profile' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="profile--header">
+            <div class="profile_band-item">
+                {% if profile.picture %}
+                <img class="profile_band-item__img" src="{{ user.profile.picture.url }}" alt="" />
+                {% else %}
+                <img class="profile_band-item__img" src="../static/src/profile/profile_img.png" alt="" />
+                {% endif %}
+                <div class="profile_upload">
+                    <label class="profile_upload_img" for="upload">
+                        <i data-feather="upload"></i>
+                        <input type="file" id="upload" name="picture" style="display: none;">
+                    </label>
+                </div>
+            </div>
+            <div class="profile--header__info">
+                <input class="form-control update_profile_input {% if form.website.errors %}is-invalid{% endif %}"
+                    type="text" name="name" placeholder="Nombre" value="{{ profile.name }}" />
+
+                <div class="form-group update_profile_genre_form">
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        <option>Pop</option>
+                        <option>Rock</option>
+                        <option>Metal</option>
+                        <option>Salsa</option>
+                        <option>Son cubano</option>
+                    </select>
+                </div>
+                <textarea
+                    class="form-control update_profile_textarea {% if form.biography.errors %}is-invalid{% endif %}"
+                    name="biography">{% if form.errors %}{{ form.biography.value }}{% else %}{{ profile.biography }}{% endif %}
+                    </textarea>
+            </div>
+        </div>
+        <div class="profile--content">
+            <div class="profile--content__titles">
+                <p>Título</p>
+            </div>
+            <ul class="songlist">
+
+                <li class="song">
+                    <div class="song--title__container">
+                        <a href="{{ user.profile.urlsong1 }}">
+                            <div class="mp3_buttons">
+                                <i class="play--icon" data-feather="play"></i>
+                            </div>
+                        </a>
+                        <input
+                            class="form-control update_profile_input song_input {% if form.website.errors %}is-invalid{% endif %}"
+                            type="text" name="namesong1" placeholder="Canción 1" value="{{ profile.namesong1 }}" />
+
+                        <input
+                            class="form-control update_profile_input song_input urlsong {% if form.website.errors %}is-invalid{% endif %}"
+                            type="text" name="urlsong1" placeholder="Video id" value="{{ profile.urlsong1 }}" />
+
+                    </div>
+                </li>
+
+                <li class="song">
+                    <div class="song--title__container">
+                        <a href="{{ user.profile.urlsong2 }}">
+                            <div class="mp3_buttons">
+                                <i class="play--icon" data-feather="play"></i>
+                            </div>
+                        </a>
+                        <input
+                            class="form-control update_profile_input song_input {% if form.website.errors %}is-invalid{% endif %}"
+                            type="text" name="namesong2" placeholder="Canción 2" value="{{ profile.namesong2 }}" />
+
+                        <input
+                            class="form-control update_profile_input song_input urlsong {% if form.website.errors %}is-invalid{% endif %}"
+                            type="text" name="urlsong2" placeholder="Video id" value="{{ profile.urlsong2 }}" />
+                    </div>
+                </li>
+
+                <li class="song">
+                    <div class="song--title__container">
+                        <a href="{{ user.profile.urlsong3 }}">
+                            <div class="mp3_buttons">
+                                <i class="play--icon" data-feather="play"></i>
+                            </div>
+                        </a>
+                        <input
+                            class="form-control update_profile_input song_input {% if form.website.errors %}is-invalid{% endif %}"
+                            type="text" name="namesong3" placeholder="Canción 3" value="{{ profile.namesong3 }}" />
+
+                        <input
+                            class="form-control update_profile_input song_input urlsong {% if form.website.errors %}is-invalid{% endif %}"
+                            type="text" name="urlsong3" placeholder="Video id" value="{{ profile.urlsong3 }}" />
+                    </div>
+                </li>
+
+
+
+            </ul>
+        </div>
+        <div class="profile--schedule">
+            <div class="profile--schedule--items">
+                <p>$</p>
+                <input
+                    class="form-control update_profile_input profile_price {% if form.website.errors %}is-invalid{% endif %}"
+                    type="text" name="price" placeholder="Precio" value="{{ profile.price }}" />
+
+                <button type="submit" class="profile--schedule__btn">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

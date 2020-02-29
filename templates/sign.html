@@ -1,0 +1,77 @@
+{% block head_content %}
+<title>Savatto Music | Iniciar Sesión</title>
+<link rel="stylesheet" href="../static/css/sign.css">
+<link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block container %}
+
+<body>
+    <div class="logo">
+        <a href="{% url 'users:home' %}">
+            <img src="../../static/src/logo.png" alt="">
+        </a>
+    </div>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form method="POST" action="{% url 'users:signup' %}">
+                {% csrf_token %}
+                <h1>Crear una cuenta</h1>
+                <input type="text" placeholder="Nombre">
+                <input type="text" placeholder="Apellido">
+                <input type="email" placeholder="Correo">
+                <input type="text" placeholder="Número de teléfono">
+                <input type="password" placeholder="Contraseña">
+                <div class="input_checkbox">
+                    <input type="checkbox" placeholder="asdas">
+                    <label for="T&C">Acepto <a href="#">término y condiciones</a></label>
+                </div>
+                <button>Registrarse</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form method="POST" action="{% url 'users:login' %}">
+                {% csrf_token %}
+                <h1>Iniciar Sesión</h1>
+                <input type="text" placeholder="Nombre de usuario" name="username" />
+                <input type="password" placeholder="Contraseña" name="password" />
+                <br>
+                <button>Iniciar Sesión</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>¿Ya tienes una cuenta?</h1>
+                    <p>¡Inicia sesión y conoce los nuevos músicos!</p>
+                    <button class="ghost" id="signIn">Iniciar Sesión</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>¿Aún no tienes una cuenta?</h1>
+                    <p>No te preocupes, ¡Regístrate ahora mismo!</p>
+                    <button class="ghost" id="signUp">Registrarse</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="musician_button">Sí eres músico ingresa <a href="{% url 'users:Bandsignup' %}">aquí</a> para registrarte</p class="musician_button">
+    <script src="https://unpkg.com/ionicons@4.2.2/dist/ionicons.js"></script>
+</body>
+
+<script>
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('container');
+
+
+    signUpButton.addEventListener('click', () => {
+        container.classList.add("right-panel-active");
+    });
+
+
+    signInButton.addEventListener('click', () => {
+        container.classList.remove("right-panel-active");
+    });
+
+</script>
+{% endblock %}

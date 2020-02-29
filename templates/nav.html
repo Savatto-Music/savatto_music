@@ -4,14 +4,31 @@
             <img src="../../static/src/logo.png" alt="">
         </a>
     </div>
+    <input type="text" class="search--input" placeholder="Buscar">
     <div class="my--navbar--options">
-        <div class="menu">
-            <a href="">
-                <img src="../../static/src/menu.png" alt="">
-            </a>
-        </div>
         <div class="profile">
-            <img src="../../static/src/profile.png" alt="">
+            {% if request.user.profile.picture %}
+            <ul>
+                <li>
+                    <a href="{% url 'users:update_profile' %}">
+                        Editar perfil
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'users:logout' %}">
+                        Cerrar sesión
+                    </a>
+                </li>
+            </ul>
+            <img src="{{ request.user.profile.picture.url }}" height="35"
+                class="d-inline-block align-top rounded-circle profile_img" />
+            {% else %}
+            <a href="{% url 'users:signup' %}">
+                <div class="profile_sign">
+                    <p>Ingresar</p>
+                </div>
+            </a>
+            {% endif %}
         </div>
     </div>
 </header>

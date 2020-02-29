@@ -1,27 +1,21 @@
 {% extends "base.html" %}
 
 {% block head_content %}
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+<title>Savatto Music | {{ user.profile.name }}</title>
 {% endblock %}
 
 {% block container %}
 
+
 <div class="profile--container">
     <div class="profile--header">
-        <div class="carousel-item">
-            <img class="carousel-item__img" src="{{ user.profile.picture.url }}" alt="" />
-            <div class="carousel-item__details">
-            </div>
+        <div class="profile_band-item">
+            <img class="profile_band-item__img" src="{{ user.profile.picture.url }}" alt="" />
         </div>
         <div class="profile--header__info">
             <h3 class="profile--header__band">{{ user.profile.name }}</h3>
             <h5>{{ user.profile.genre }}</h5>
-            <p>{{ user.profile.biography }}</p>
-            <a href="#">
-                <div class="liveview">Ver en vivo</div>
-            </a>
+            <p class="profile--header__biography">{{ user.profile.biography }}</p>
         </div>
     </div>
     <div class="profile--content">
@@ -30,16 +24,13 @@
         </div>
         <ul class="songlist">
 
-            {% if user.profile.song1 %}
+            {% if user.profile.namesong1 %}
             <li class="song">
                 <div class="song--title__container">
-                    <audio id="myAudio" src="{{ user.profile.song1.url }}"></audio>
                     <div class="mp3_buttons">
-                        <button class="mp3_button" onclick="document.getElementById('myAudio').play()">
+                        <button type="button" class="mp3_button" data-toggle="modal"
+                            data-target="#{{ user.profile.namesong1 }}">
                             <i class="play--icon" data-feather="play"></i>
-                        </button>
-                        <button class="mp3_button" onclick="document.getElementById('myAudio').pause()">
-                            <i class="play--icon" data-feather="pause"></i>
                         </button>
                     </div>
                     <p>{{ user.profile.namesong1 }}</p>
@@ -48,60 +39,130 @@
             </li>
             {%endif%}
 
-            {% if user.profile.song2 %}
+            {% if user.profile.namesong2 %}
             <li class="song">
                 <div class="song--title__container">
-                    <audio id="demo" src="{{ user.profile.song2.url }}"></audio>
                     <div class="mp3_buttons">
-                        <button class="mp3_button" onclick="document.getElementById('demo').play()">
+                        <button type="button" class="mp3_button" data-toggle="modal"
+                            data-target="#{{ user.profile.namesong2 }}">
                             <i class="play--icon" data-feather="play"></i>
-                        </button>
-                        <button class="mp3_button" onclick="document.getElementById('demo').pause()">
-                            <i class="play--icon" data-feather="pause"></i>
                         </button>
                     </div>
                     <p>{{ user.profile.namesong2 }}</p>
                 </div>
 
-
             </li>
-            {% endif %}
+            {%endif%}
 
-            {% if user.profile.song3 %}
+            {% if user.profile.namesong3 %}
             <li class="song">
                 <div class="song--title__container">
-                    <audio id="demo" src="{{ user.profile.song3.url }}"></audio>
                     <div class="mp3_buttons">
-                        <button class="mp3_button" onclick="document.getElementById('demo').play()">
+                        <button type="button" class="mp3_button" data-toggle="modal"
+                            data-target="#{{ user.profile.namesong3 }}">
                             <i class="play--icon" data-feather="play"></i>
-                        </button>
-                        <button class="mp3_button" onclick="document.getElementById('demo').pause()">
-                            <i class="play--icon" data-feather="pause"></i>
                         </button>
                     </div>
                     <p>{{ user.profile.namesong3 }}</p>
                 </div>
+
             </li>
-            {% endif %}
+            {%endif%}
+
+
         </ul>
     </div>
     <div class="profile--schedule">
-        <h4>{{ user.profile.price }} / Hora</h4>
-        <button class="profile--schedule__btn">
-            <i class="play--icon" data-feather="calendar"></i>
-            <p class="profile--schedule__text">Agendar</p>
-        </button>
+        <div class="profile--schedule--items">
+            <p class="profile--price">{{ user.profile.price }} / Hora</p>
+            <button class="profile--schedule__btn">
+                <i class="play--icon" data-feather="calendar"></i>
+                <p class="profile--schedule__text">Agendar</p>
+            </button>
+        </div>
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-    crossorigin="anonymous"></script>
+
+{% if user.profile.namesong1 %}
+<!-- Modal -->
+<div class="modal fade" id="{{ user.profile.namesong1 }}" tabindex="-1" role="dialog"
+    aria-labelledby="{{ user.profile.namesong1 }}Title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="{{ user.profile.namesong1 }}Title">{{ user.profile.namesong1 }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="videoWrapper">
+                    <!-- Copy & Pasted from YouTube -->
+                    <iframe width="560" height="349" src="http://www.youtube.com/embed/{{ user.profile.urlsong1 }}"
+                        frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+{%endif%}
+
+{% if user.profile.namesong2 %}
+<!-- Modal -->
+<div class="modal fade" id="{{ user.profile.namesong2 }}" tabindex="-1" role="dialog"
+    aria-labelledby="{{ user.profile.namesong2 }}Title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="{{ user.profile.namesong2 }}Title">{{ user.profile.namesong2 }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="videoWrapper">
+                    <!-- Copy & Pasted from YouTube -->
+                    <iframe width="560" height="349" src="http://www.youtube.com/embed/{{ user.profile.urlsong2 }}"
+                        frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+{%endif%}
+
+{% if user.profile.namesong3 %}
+<!-- Modal -->
+<div class="modal fade" id="{{ user.profile.namesong3 }}" tabindex="-1" role="dialog"
+    aria-labelledby="{{ user.profile.namesong3 }}Title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="{{ user.profile.namesong3 }}Title">{{ user.profile.namesong3 }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="videoWrapper">
+                    <!-- Copy & Pasted from YouTube -->
+                    <iframe width="560" height="349" src="http://www.youtube.com/embed/{{ user.profile.urlsong3 }}"
+                        frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+{%endif%}
 
 {% endblock %}

@@ -40,6 +40,12 @@ urlpatterns = [
     ),
 
     path(
+        route='signup/band',
+        view=views.Band_signupView.as_view(),
+        name='Bandsignup'
+    ),
+
+    path(
         route='me/profile',
         view=views.UpdateProfileView.as_view(),
         name='update_profile'

@@ -30,6 +30,10 @@ class SignupForm(forms.Form):
         widget=forms.EmailInput()
     )
 
+    class Meta:
+        model = Profile
+        fields = ['genre']
+
     def clean_username(self):
         """Username must be unique."""
         username = self.cleaned_data['username']
